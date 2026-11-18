@@ -190,8 +190,8 @@
       document.getElementById('btn-privacy-info').addEventListener('click', () => {
         EB.Audio.play('click');
         this.openDialog(
-          'Privacy Information',
-          'Element Blocks by YSF Tech runs 100% offline on your device. No personal data, analytics, or network requests are collected or transmitted.',
+          'Privacy Policy (YSF Tech)',
+          'Element Blocks (com.ysftech.elementblocks) runs 100% offline. We collect, transmit, or share ZERO personal data, location, or analytics. Scores, stars, streaks, and settings are stored only on your device and can be erased anytime via "Reset All Statistics & Progress". Only VIBRATE permission is used for optional haptics.',
           'Got It',
           null,
           true

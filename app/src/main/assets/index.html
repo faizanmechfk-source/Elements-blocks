@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Element Blocks</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <!-- Ambient animated cosmic background -->
+    <div class="bg-nebula" aria-hidden="true">
+      <div class="bg-orb bg-orb-fire"></div>
+      <div class="bg-orb bg-orb-water"></div>
+      <div class="bg-orb bg-orb-earth"></div>
+      <div class="bg-orb bg-orb-air"></div>
+    </div>
+
+    <!-- 1. SPLASH SCREEN -->
+    <section id="screen-splash" class="screen screen-active">
+      <div class="splash-content">
+        <div class="splash-logo-wrap pulse-glow">
+          <img src="images/logo_emblem.jpg" alt="Element Blocks Emblem" class="splash-logo" />
+        </div>
+        <h1 class="brand-title">ELEMENT <span>BLOCKS</span></h1>
+        <p class="brand-subtitle">MASTER THE FOUR ELEMENTS</p>
+        <div class="splash-loader">
+          <div id="splash-progress" class="splash-loader-fill"></div>
+        </div>
+        <p class="developer-credit">YSF TECH</p>
+      </div>
+    </section>
+
+    <!-- 2. MAIN MENU -->
+    <section id="screen-menu" class="screen">
+      <header class="menu-header">
+        <div class="stat-pill">
+          <span class="pill-icon">🏆</span>
+          <div>
+            <span class="pill-label">BEST</span>
+            <strong id="menu-best-score" class="pill-value">0</strong>
+          </div>
+        </div>
+        <div id="menu-streak-pill" class="stat-pill stat-pill-streak" data-nav="daily">
+          <span class="pill-icon">🔥</span>
+          <div>
+            <span class="pill-label">STREAK</span>
+            <strong id="menu-streak-days" class="pill-value">1d</strong>
+          </div>
+        </div>
+        <div class="stat-pill stat-pill-star" data-nav="shop">
+          <span class="pill-icon">★</span>
+          <div>
+            <span class="pill-label">STARS</span>
+            <strong id="menu-stars" class="pill-value">0</strong>
+          </div>
+          <span class="pill-plus">+</span>
+        </div>
+      </header>
+
+      <div class="menu-hero-card">
+        <img src="images/hero_banner.jpg" alt="Elemental Arena" class="menu-hero-img" />
+        <div class="menu-hero-overlay">
+          <img src="images/logo_emblem.jpg" alt="Logo" class="menu-mini-emblem" />
+          <div>
+            <h1 class="menu-title">ELEMENT <span>BLOCKS</span></h1>
+            <p class="menu-tagline">8×8 Elemental Puzzle Strategy</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-primary-actions">
+        <button id="btn-resume-game" class="glass-btn btn-accent hidden" type="button">
+          <span class="btn-icon">▶</span>
+          <span>CONTINUE GAME</span>
+          <small id="menu-saved-score" class="btn-badge">0</small>
+        </button>
+        <button id="btn-new-game" class="glass-btn btn-primary" type="button">
+          <span class="btn-icon">⚡</span>
+          <span>PLAY NOW</span>
+        </button>
+      </div>
+
+      <button id="btn-daily-banner" class="daily-teaser-card" type="button" data-nav="daily">
+        <div class="daily-teaser-left">
+          <span class="daily-badge">DAILY QUESTS</span>
+          <strong id="menu-daily-summary">3 Challenges Active Today</strong>
+        </div>
+        <span class="daily-arrow">›</span>
+      </button>
+
+      <nav class="menu-grid" aria-label="Main Navigation">
+        <button class="menu-tile" type="button" data-nav="shop">
+          <span class="tile-icon">🧨</span>
+          <span class="tile-title">Power Shop</span>
+        </button>
+        <button class="menu-tile" type="button" data-nav="achievements">
+          <span class="tile-icon">🎖</span>
+          <span class="tile-title">Achievements</span>
+          <small id="menu-ach-count" class="tile-sub">0/15</small>
+        </button>
+        <button class="menu-tile" type="button" data-nav="highscores">
+          <span class="tile-icon">👑</span>
+          <span class="tile-title">High Scores</span>
+        </button>
+        <button class="menu-tile" type="button" data-nav="statistics">
+          <span class="tile-icon">📊</span>
+          <span class="tile-title">Statistics</span>
+        </button>
+        <button class="menu-tile" type="button" data-nav="howto">
+          <span class="tile-icon">📘</span>
+          <span class="tile-title">How to Play</span>
+        </button>
+        <button class="menu-tile" type="button" data-nav="settings">
+          <span class="tile-icon">⚙</span>
+          <span class="tile-title">Settings</span>
+        </button>
+      </nav>
+    </section>
+
+    <!-- 3. GAMEPLAY SCREEN -->
+    <section id="screen-game" class="screen">
+      <header class="game-hud">
+        <button id="btn-pause" class="hud-icon-btn" type="button" aria-label="Pause Game">⏸</button>
+
+        <div class="hud-score-cluster">
+          <div class="hud-score-box">
+            <span class="hud-label">SCORE</span>
+            <strong id="hud-score" class="hud-score-val">0</strong>
+          </div>
+          <div class="hud-best-box">
+            <span class="hud-label">BEST</span>
+            <strong id="hud-best" class="hud-best-val">0</strong>
+          </div>
+        </div>
+
+        <div class="hud-right-cluster">
+          <div id="hud-multiplier-pill" class="hud-mult-pill">
+            <span id="hud-multiplier">1x</span>
+          </div>
+          <div class="hud-star-pill" id="hud-star-target">
+            <span class="star-glyph">★</span>
+            <strong id="hud-stars">0</strong>
+          </div>
+        </div>
+      </header>
+
+      <!-- Active Power-Up / Targeting Banner -->
+      <div id="powerup-banner" class="powerup-banner hidden">
+        <span id="powerup-banner-text">Select target on board</span>
+        <div id="lightning-element-picker" class="element-picker hidden">
+          <button class="el-chip el-fire" data-el="fire" type="button">🔥 Fire</button>
+          <button class="el-chip el-water" data-el="water" type="button">💧 Water</button>
+          <button class="el-chip el-earth" data-el="earth" type="button">🌿 Earth</button>
+          <button class="el-chip el-air" data-el="air" type="button">💨 Air</button>
+        </div>
+        <button id="btn-cancel-powerup" class="banner-cancel-btn" type="button">Cancel</button>
+      </div>
+
+      <!-- Unified HTML5 Canvas for Board + Piece Tray + Drag + Particles -->
+      <div id="canvas-stage" class="canvas-stage">
+        <canvas id="game-canvas"></canvas>
+      </div>
+
+      <!-- Bottom Power-Up Bar -->
+      <footer class="powerup-dock">
+        <button class="powerup-btn" id="pu-dynamite" data-powerup="dynamite" type="button">
+          <span class="pu-icon">🧨</span>
+          <span class="pu-name">Dynamite</span>
+          <span class="pu-cost" id="pu-cost-dynamite">15 ★</span>
+        </button>
+        <button class="powerup-btn" id="pu-lightning" data-powerup="lightning" type="button">
+          <span class="pu-icon">⚡</span>
+          <span class="pu-name">Lightning</span>
+          <span class="pu-cost" id="pu-cost-lightning">20 ★</span>
+        </button>
+        <button class="powerup-btn" id="pu-hammer" data-powerup="hammer" type="button">
+          <span class="pu-icon">🔨</span>
+          <span class="pu-name">Hammer</span>
+          <span class="pu-cost" id="pu-cost-hammer">10 ★</span>
+        </button>
+        <button class="powerup-btn" id="pu-shuffle" data-powerup="shuffle" type="button">
+          <span class="pu-icon">🔀</span>
+          <span class="pu-name">Shuffle</span>
+          <span class="pu-cost" id="pu-cost-shuffle">12 ★</span>
+        </button>
+      </footer>
+    </section>
+
+    <!-- 4. PAUSE OVERLAY -->
+    <div id="modal-pause" class="modal-overlay hidden" role="dialog" aria-modal="true">
+      <div class="glass-modal">
+        <h2 class="modal-title">GAME PAUSED</h2>
+        <p class="modal-sub">Take a breath and plan your next move.</p>
+        <div class="modal-actions">
+          <button id="btn-pause-resume" class="glass-btn btn-primary" type="button">Resume</button>
+          <button id="btn-pause-restart" class="glass-btn btn-secondary" type="button">Restart Game</button>
+          <button id="btn-pause-howto" class="glass-btn btn-secondary" type="button">How to Play</button>
+          <button id="btn-pause-settings" class="glass-btn btn-secondary" type="button">Settings</button>
+          <button id="btn-pause-menu" class="glass-btn btn-danger-outline" type="button">Main Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. GAME OVER OVERLAY -->
+    <div id="modal-gameover" class="modal-overlay hidden" role="dialog" aria-modal="true">
+      <div class="glass-modal gameover-modal">
+        <div id="go-new-best-badge" class="new-best-badge hidden">★ NEW HIGH SCORE ★</div>
+        <h2 class="modal-title">GAME OVER</h2>
+        <p class="modal-sub">No more valid placements remaining</p>
+
+        <div class="gameover-stats-grid">
+          <div class="go-stat-card">
+            <span>Final Score</span>
+            <strong id="go-score">0</strong>
+          </div>
+          <div class="go-stat-card">
+            <span>Best Score</span>
+            <strong id="go-best">0</strong>
+          </div>
+          <div class="go-stat-card">
+            <span>Stars Earned</span>
+            <strong id="go-stars">0 ★</strong>
+          </div>
+          <div class="go-stat-card">
+            <span>Max Combo</span>
+            <strong id="go-combo">0</strong>
+          </div>
+        </div>
+
+        <div id="go-achievements-box" class="go-ach-box hidden">
+          <h3>Achievements Unlocked</h3>
+          <ul id="go-achievements-list"></ul>
+        </div>
+
+        <div class="modal-actions">
+          <button id="btn-go-play-again" class="glass-btn btn-primary" type="button">Play Again</button>
+          <button id="btn-go-stats" class="glass-btn btn-secondary" type="button">Statistics</button>
+          <button id="btn-go-menu" class="glass-btn btn-secondary" type="button">Main Menu</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. SETTINGS SCREEN -->
+    <section id="screen-settings" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>Settings</h2>
+        <span class="header-spacer"></span>
+      </header>
+      <div class="scroll-body">
+        <div class="glass-panel">
+          <div class="setting-row">
+            <div>
+              <strong>Sound Effects</strong>
+              <small>Blocks, clears, power-ups & rewards</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-sound" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Background Music</strong>
+              <small>Ambient elemental synth track</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-music" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Vibration</strong>
+              <small>Line clears, combos & explosions</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-vibration" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-row">
+            <div>
+              <strong>Haptic Feedback</strong>
+              <small>Subtle taps & block snap pulses</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-haptics" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="glass-panel">
+          <button class="panel-action-row" type="button" data-nav="howto">
+            <span>📘 How to Play</span>
+            <span>›</span>
+          </button>
+          <button class="panel-action-row" type="button" id="btn-privacy-info">
+            <span>🔒 Privacy Information</span>
+            <span>›</span>
+          </button>
+          <div class="panel-info-row">
+            <span>📱 Version</span>
+            <strong id="settings-version">1.0.0</strong>
+          </div>
+          <div class="panel-info-row">
+            <span>🏢 Developer</span>
+            <strong>YSF Tech</strong>
+          </div>
+        </div>
+
+        <button id="btn-reset-stats" class="glass-btn btn-danger-outline" type="button">
+          Reset All Statistics & Progress
+        </button>
+      </div>
+    </section>
+
+    <!-- 7. ACHIEVEMENTS SCREEN -->
+    <section id="screen-achievements" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>Achievements</h2>
+        <span id="ach-header-progress" class="header-pill">0/15</span>
+      </header>
+      <div class="scroll-body">
+        <div id="achievements-list" class="card-stack"></div>
+      </div>
+    </section>
+
+    <!-- 8. HIGH SCORES SCREEN -->
+    <section id="screen-highscores" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>High Scores</h2>
+        <span class="header-spacer"></span>
+      </header>
+      <div class="scroll-body">
+        <div class="glass-panel highlight-score-panel">
+          <span>ALL-TIME BEST SCORE</span>
+          <strong id="hs-alltime-best">0</strong>
+        </div>
+        <div id="highscores-list" class="card-stack"></div>
+      </div>
+    </section>
+
+    <!-- 9. HOW TO PLAY SCREEN -->
+    <section id="screen-howto" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>How to Play</h2>
+        <span class="header-spacer"></span>
+      </header>
+      <div class="scroll-body">
+        <div class="glass-panel guide-card">
+          <h3>1. Place Elemental Blocks</h3>
+          <p>Touch, hold, and drag any of the 3 pieces from the tray onto the 8×8 grid. Blocks stay exactly where placed—there is no gravity.</p>
+        </div>
+        <div class="glass-panel guide-card">
+          <h3>2. Clear Full Rows & Columns</h3>
+          <p>Fill any complete horizontal row or vertical column of 8 cells to clear it! Clear multiple lines in one move for massive combo bonuses.</p>
+        </div>
+        <div class="glass-panel guide-card">
+          <h3>3. Build Your Multiplier</h3>
+          <p>Consecutive turns with line clears boost your score multiplier up to 10x+. Moves without a clear gradually step down your streak.</p>
+        </div>
+        <div class="glass-panel guide-card">
+          <h3>4. Collect Stars & Use Power-Ups</h3>
+          <p>Clear lines passing through ★ cells to earn Stars. Spend Stars in the Shop or during gameplay for Dynamite (3×3 blast), Lightning (element wipe), Hammer (single cell), or Shuffle (new tray).</p>
+        </div>
+        <div class="glass-panel guide-card">
+          <h3>5. Four Elemental Themes</h3>
+          <div class="element-legend">
+            <span class="el-chip el-fire">🔥 Fire</span>
+            <span class="el-chip el-water">💧 Water</span>
+            <span class="el-chip el-earth">🌿 Earth</span>
+            <span class="el-chip el-air">💨 Air</span>
+          </div>
+          <p>All elements share identical placement rules—master their board synergy!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. POWER-UP SHOP SCREEN -->
+    <section id="screen-shop" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>Power-Up Shop</h2>
+        <span class="header-pill">★ <span id="shop-stars">0</span></span>
+      </header>
+      <div class="scroll-body">
+        <p class="shop-intro">Stock up on tactical charges using Stars earned in-game, from Achievements, and Daily Challenges.</p>
+        <div id="shop-items-list" class="card-stack"></div>
+      </div>
+    </section>
+
+    <!-- 11. DAILY CHALLENGE SCREEN -->
+    <section id="screen-daily" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>Daily Challenge</h2>
+        <span id="daily-date-pill" class="header-pill">TODAY</span>
+      </header>
+      <div class="scroll-body">
+        <div class="glass-panel streak-panel">
+          <div class="streak-panel-head">
+            <div>
+              <span class="daily-badge">CONSECUTIVE DAYS PLAYED</span>
+              <strong id="daily-streak-title" class="streak-big-val">🔥 1 Day Streak</strong>
+            </div>
+            <span id="daily-best-streak" class="reward-chip">Best: 1d</span>
+          </div>
+          <div id="daily-streak-track" class="streak-days-track"></div>
+          <small id="daily-streak-sub" class="streak-sub-copy">Log in 6 more consecutive days for +25 ★ bonus!</small>
+        </div>
+        <div class="glass-panel daily-hero-panel">
+          <h3>Today's Elemental Trials</h3>
+          <p>Complete offline quests generated for today's date and claim bonus Stars.</p>
+          <button id="btn-daily-play" class="glass-btn btn-primary" type="button">Play to Progress</button>
+        </div>
+        <div id="daily-list" class="card-stack"></div>
+      </div>
+    </section>
+
+    <!-- 12. STATISTICS SCREEN -->
+    <section id="screen-statistics" class="screen sub-screen">
+      <header class="sub-header">
+        <button class="back-btn" type="button" data-back>‹ Back</button>
+        <h2>Statistics</h2>
+        <span class="header-spacer"></span>
+      </header>
+      <div class="scroll-body">
+        <div id="stats-grid" class="stats-grid"></div>
+      </div>
+    </section>
+
+    <!-- CONFIRM / PRIVACY DIALOG -->
+    <div id="modal-dialog" class="modal-overlay hidden" role="dialog" aria-modal="true">
+      <div class="glass-modal">
+        <h2 id="dialog-title" class="modal-title">Confirm</h2>
+        <p id="dialog-message" class="modal-sub"></p>
+        <div class="modal-actions">
+          <button id="btn-dialog-confirm" class="glass-btn btn-primary" type="button">Confirm</button>
+          <button id="btn-dialog-cancel" class="glass-btn btn-secondary" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENT / REWARD TOAST -->
+    <div id="toast-banner" class="toast-banner hidden" role="status">
+      <span id="toast-icon">🏆</span>
+      <div class="toast-copy">
+        <strong id="toast-title">Achievement Unlocked!</strong>
+        <small id="toast-desc">+10 ★</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modular Offline Game Engine Scripts -->
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/audio.js"></script>
+  <script defer src="js/shapes.js"></script>
+  <script defer src="js/board.js"></script>
+  <script defer src="js/scoring.js"></script>
+  <script defer src="js/particles.js"></script>
+  <script defer src="js/powerups.js"></script>
+  <script defer src="js/achievements.js"></script>
+  <script defer src="js/ui.js"></script>
+  <script defer src="js/game.js"></script>
+</body>
+</html>

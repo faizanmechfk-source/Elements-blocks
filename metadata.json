@@ -1,0 +1,6 @@
+{
+  "name": "Element Blocks",
+  "description": "Offline 8x8 elemental block puzzle game with power-ups, multipliers, stars, achievements, and daily challenges.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
